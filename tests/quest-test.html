@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Title</title>
+    <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
+    <script type='module' src='_test.js'></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family: sans-serif;
+        }
+
+        .page-root {
+            width: 100vw;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            padding: 8px 16px;
+
+            border: 1px solid #ccc;
+            border-radius: 16px;
+        }
+
+        .screen-title {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        .screen-text {
+            padding: 8px 0;
+        }
+
+        .choice-message {
+            margin-bottom: 6px;
+
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .controls {
+            display: flex;
+
+            gap: 6px;
+        }
+
+        .controls button {
+            flex: 1;
+        }
+
+        button {
+            padding: 4px 8px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        button:active {
+            border-color: #bbb;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class='page-root'>
+    <div class='screen'>
+        <div class='screen-title'>
+            Заголовок экрана
+        </div>
+        <div class='screen-text'>
+            Текст экрана, который может состоять и кучи слов или строк
+        </div>
+        <div class='choice-message'>
+            Вы что-то сделали
+        </div>
+        <div class='choices'>
+            <button class='choice'>
+                1. Первый выбор
+            </button>
+            <button class='choice'>
+                2. Второй выбор
+            </button>
+            <button class='choice'>
+                3. Третий выбор
+            </button>
+        </div>
+        <div class='controls'>
+            <button class='inventory-control'>
+                Инвентарь
+            </button>
+            <button class='recipes-control'>
+                Крафт
+            </button>
+            <button class='screen-control'>
+                Экран
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
