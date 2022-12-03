@@ -22,9 +22,8 @@ export default class QuestController {
             if (command.toLowerCase() === 'quest') {
                 let questData = QuestController.#quests[args[0] || 'test'];
 
-                console.log();
-
                 this.#chat.setActiveListenerGroupName('QuestController');
+                this.#sendHelpMessage();
                 this.#startQuest(questData);
             }
 
@@ -71,6 +70,16 @@ export default class QuestController {
                 this.#setChoiceMessage('Недостаточно предметов');
             }
         }
+    }
+
+    #sendHelpMessage() {
+        this.#sendChatMessage(
+            'Чтобы выбрать действие, просто отправь сообщение с его номером.'
+            + '\nКроме этого, можно отправить следующие сообщения:'
+            + '\nИнвентарь - посмотреть список имеющихся вещей.'
+            + '\nКрафт - создать новый предмет из имеющихся.'
+            + '\nЭкран - вернуться к экрану с текстом и действиями.'
+        );
     }
 
     #startQuest(questData) {
@@ -171,13 +180,17 @@ export default class QuestController {
 
         let messageText = `${title}\n${text}\n${choicesText}`;
 
-        this.#chat.sendMessage(messageText);
+        this.#sendChatMessage(messageText);
     }
 
     #setChoiceMessage(message) {
         if (message) {
-            this.#chat.sendMessage(message);
+            this.#sendChatMessage(message);
         }
+    }
+
+    #sendChatMessage(message) {
+        this.#chat.sendMessage(message.replaceAll('\n', '<br />'));
     }
 
     static addQuest(questName, quest) {
