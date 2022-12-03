@@ -146,7 +146,7 @@ export default class Quest {
     canUseRecipe(index) {
         let recipe = this.#unlockedRecipes[index];
 
-        return recipe !== null && recipe.canCraft(this);
+        return recipe && recipe.canCraft(this);
     }
 
     useRecipe(index) {

@@ -320,7 +320,7 @@ window.chat = chat;
 
 chat.addMessageListener('QuestController', message => {
     let element = document.createElement('pre');
-    element.innerText = message;
+    element.innerHTML = message;
     document.body.append(element);
 });
 
