@@ -7,6 +7,7 @@ export const test = {
         stone: 'Камень',
         stick: 'Палка',
         sword: 'Меч',
+        feather: 'Перо',
     },
     recipes: {
         sword: 'stick + stone + stone = sword',
@@ -36,7 +37,7 @@ export const test = {
                 },
                 {
                     title: 'Пойти в лес',
-                    action: 'jump forest',
+                    action: 'next',
                 },
             ],
         },
@@ -79,8 +80,22 @@ export const test = {
             text: 'Сова желает вам удачи',
             choices: [
                 {
-                    title: 'Спасибо! (пройти дальше)',
-                    action: 'jump finish',
+                    title: 'Спасибо!',
+                    action: 'next',
+                },
+            ],
+        },
+        {
+            title: 'Подарок от совы',
+            text: 'Сова подарила вам перо',
+            choices: [
+                {
+                    title: '(забрать и пройти дальше)',
+                    action: [
+                        'give feather',
+                        'message "Вы подобрали перо"',
+                        'next',
+                    ],
                 },
             ],
         },

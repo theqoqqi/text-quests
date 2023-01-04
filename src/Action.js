@@ -4,6 +4,9 @@ export default class Action {
         jump(quest, screenName) {
             quest.setCurrentScreen(screenName);
         },
+        next(quest, amount) {
+            quest.goToNextScreen(amount ? +amount : undefined);
+        },
         relay(quest, relayName) {
             quest.useRelay(relayName);
         },
@@ -11,10 +14,10 @@ export default class Action {
             quest.setChoiceMessage(text);
         },
         give(quest, item, amount = 1) {
-            quest.addItemToInventory(item, amount);
+            quest.addItemToInventory(item, amount ? +amount : undefined);
         },
         consume(quest, item, amount = 1) {
-            quest.consumeItemFromInventory(item, amount);
+            quest.consumeItemFromInventory(item, amount ? +amount : undefined);
         },
         unlock(quest, recipeName) {
             quest.unlockRecipe(recipeName);
@@ -25,9 +28,7 @@ export default class Action {
         set(quest, variableName, operator, expression) {
             let value = quest.getVariable(variableName);
 
-            eval(`value
-            ${operator}
-            ${expression}`);
+            eval(`value ${operator} ${expression}`);
 
             quest.setVariable(variableName, value);
         },

@@ -68,7 +68,17 @@ export default class Quest {
         this.#questFinishedListener();
     }
 
+    goToNextScreen(amount = 1) {
+        let currentIndex = this.#context.getScreenIndex(this.#currentScreen);
+
+        this.setCurrentScreen(currentIndex + amount);
+    }
+
     setCurrentScreen(screen) {
+        if (typeof screen === 'number') {
+            screen = this.#context.getScreenByIndex(screen);
+        }
+
         if (typeof screen === 'string') {
             screen = this.#context.getScreen(screen);
         }
@@ -121,7 +131,7 @@ export default class Quest {
     }
 
     unlockRecipe(name) {
-        let recipe = this.#context.recipes.get(name);
+        let recipe = this.#context.getRecipe(name);
 
         if (recipe) {
             this.#unlockedRecipes.push(recipe);
@@ -129,7 +139,7 @@ export default class Quest {
     }
 
     lockRecipe(name) {
-        let recipe = this.#context.recipes.get(name);
+        let recipe = this.#context.getRecipe(name);
         let index = this.#unlockedRecipes.indexOf(recipe);
 
         if (index !== -1) {
@@ -138,7 +148,7 @@ export default class Quest {
     }
 
     isRecipeUnlocked(name) {
-        let recipe = this.#context.recipes.get(name);
+        let recipe = this.#context.getRecipe(name);
 
         return recipe && this.#unlockedRecipes.includes(recipe);
     }

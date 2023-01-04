@@ -14,7 +14,9 @@ export default class QuestContext {
 
     #variables = new Map();
 
-    #screens = new Map();
+    #screens = [];
+
+    #screensByNames = new Map();
 
     #relays = new Map();
 
@@ -57,15 +59,29 @@ export default class QuestContext {
     addScreen(screen) {
         let internalName = screen.internalName;
 
-        if (this.#screens.has(internalName)) {
+        this.#screens.push(screen);
+
+        if (!internalName) {
+            return;
+        }
+
+        if (this.#screensByNames.has(internalName)) {
             console.error(`Экран с именем ${internalName} перезаписан, т.к. уже был зарегистрирован ранее`);
         }
 
-        this.#screens.set(internalName, screen);
+        this.#screensByNames.set(internalName, screen);
     }
 
     getScreen(internalName) {
-        return this.#screens.get(internalName);
+        return this.#screensByNames.get(internalName);
+    }
+
+    getScreenIndex(screen) {
+        return this.#screens.indexOf(screen);
+    }
+
+    getScreenByIndex(index) {
+        return this.#screens[index];
     }
 
     getStartScreen() {
